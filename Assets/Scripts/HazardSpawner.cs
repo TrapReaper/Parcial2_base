@@ -14,10 +14,17 @@ public static class SpawnerExtensions
 [RequireComponent(typeof(Collider2D))]
 public class HazardSpawner : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject hazardTemplate;
+    [SerializeField]
+    private GameObject hazardTemplate1;
+    [SerializeField]
+    private GameObject hazardTemplate2;
 
     private Collider2D myCollider;
+
+    
 
     [SerializeField]
     private float spawnFrequency = 1F;
@@ -28,6 +35,8 @@ public class HazardSpawner : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
 
         InvokeRepeating("SpawnEnemy", 0.2F, spawnFrequency);
+        InvokeRepeating("SpawnEnemy1", 0.2F, spawnFrequency);
+        InvokeRepeating("SpawnEnemy2", 0.2F, spawnFrequency);
     }
 
     private void SpawnEnemy()
@@ -39,6 +48,28 @@ public class HazardSpawner : MonoBehaviour
         else
         {
             Instantiate(hazardTemplate, myCollider.GetPointInVolume(), transform.rotation);
+        }
+    }
+    private void SpawnEnemy1()
+    {
+        if (hazardTemplate1 == null)
+        {
+            CancelInvoke();
+        }
+        else
+        {
+            Instantiate(hazardTemplate1, myCollider.GetPointInVolume(), transform.rotation);
+        }
+    }
+    private void SpawnEnemy2()
+    {
+        if (hazardTemplate2 == null)
+        {
+            CancelInvoke();
+        }
+        else
+        {
+            Instantiate(hazardTemplate2, myCollider.GetPointInVolume(), transform.rotation);
         }
     }
 }
