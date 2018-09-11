@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114027122945913000}
   m_Layer: 0
   m_Name: Hazard
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdcfe3dfd6994587a7883eb471218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipo: 1
+  rb: {fileID: 50575600066743822}
   resistance: 1
 --- !u!212 &212871752603586570
 SpriteRenderer:

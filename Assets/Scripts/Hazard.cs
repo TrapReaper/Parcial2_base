@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+ 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Hazard : MonoBehaviour
@@ -8,6 +9,8 @@ public class Hazard : MonoBehaviour
     private object myRigidbody;
 
     [SerializeField]
+    private Rigidbody2D rb;
+    
     private int tipo;
 
     [SerializeField]
@@ -17,10 +20,16 @@ public class Hazard : MonoBehaviour
 
     private bool giro;
     private float movspeed;
+    private float move;
+
+    private Vector2 v2;
+    //private int ran;
 
     // Use this for initialization
     protected void Start()
     {
+        tipo = Random.Range(1, 4);
+        //tipo = 3;
         myCollider = GetComponent<Collider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         if(tipo == 1)
@@ -34,14 +43,19 @@ public class Hazard : MonoBehaviour
         }
         if(tipo == 3)
         {
-            movspeed = 2f;
+            move = 3f;
+            movspeed = 1f;
             giro = false;
-            InvokeRepeating("Alienmove", 0.8f, movspeed);
+            InvokeRepeating("Alienmove", 2f, movspeed);
         }
     
     }
     private void Alienmove()
     {
+        rb.velocity = Vector2.zero;
+        move = move * -1;
+        v2 = new Vector2(move, 0);
+        rb.AddForce(v2, ForceMode2D.Impulse);
         
     }
     private void Update()
@@ -82,12 +96,19 @@ public class Hazard : MonoBehaviour
         if(collision.gameObject.GetComponent<Shelter>() != null)
         {
             Destroy(gameObject);
+            
         }
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
-    protected void OnHazardDestroyed()
+    public void OnHazardDestroyed()
     {
         //TODO: GameObject should spin for 'spinTime' secs. then disappear
         Destroy(gameObject);
+        PlayerPrefs.SetInt("Hazards", PlayerPrefs.GetInt("Hazards") + 1);
     }
 }

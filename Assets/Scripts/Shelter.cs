@@ -4,7 +4,7 @@ public class Shelter : MonoBehaviour
 {
     [SerializeField]
     private int maxResistance = 5;
-    private int Resistance;
+    public int Resistance;
     [SerializeField]
     private float regentime;
     private float count;
@@ -13,8 +13,14 @@ public class Shelter : MonoBehaviour
 
     private void Start()
     {
+        regentime = 5f;
         Resistance = maxResistance;
         Actregen = false;
+    }
+
+    public int GetResistance()
+    {
+        return Resistance;
     }
     public int MaxResistance
     {
@@ -46,10 +52,12 @@ public class Shelter : MonoBehaviour
             if (Resistance < maxResistance)
             {
                 Resistance += 1;
+                Debug.Log("Regenero");
             }
             else
             {
                 Resistance = maxResistance;
+                Debug.Log("Regenero al maximo");
             }
         }
         
@@ -61,6 +69,7 @@ public class Shelter : MonoBehaviour
         if (collision.gameObject.GetComponent<Hazard>() != null)
         {
             Damage(1);
+            
             Debug.Log("hit");
         }
         

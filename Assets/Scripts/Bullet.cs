@@ -16,6 +16,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float autoDestroyTime = 5F;
 
+    [SerializeField]
+    private int tipo;
+
     // Use this for initialization
     private void Start()
     {
@@ -25,6 +28,21 @@ public class Bullet : MonoBehaviour
         myRigidbody.AddForce(transform.up * force, ForceMode2D.Impulse);
 
         Invoke("AutoDestroy", autoDestroyTime);
+    }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(tipo == 2)
+        {
+            if (collision.gameObject.GetComponent<Hazard>() != null)
+            {
+                Debug.Log("Paso hazard");
+            }
+        }
+        else
+        {
+            AutoDestroy();
+        }
     }
 
     private void AutoDestroy()
