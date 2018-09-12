@@ -1,0 +1,18 @@
+Feedback
+
+Examen (1.5/5.0)
+ * No hay implementación de APBullet.
+ * La implementación del disparo no satisface el enunciado.
+ * Bullet no se destruye al impactar con los hazards.
+ * No hay implementación de Debris o Invader usando OOP. Se hizo extensión de Hazard, y es funcional parcialmente (la lógica de Invader no está implementada)
+ * La implementación del HazardSpawner fuerza la instanciación de un hazard de cada tipo, así que se tienen de a tres por oleada. Por qué?
+ * No hay GameOver cuando un hazard traspasa la posición del jugador.
+ * Hay GameOver cuando un hazard impacta con un shelter y le resta toda la resistencia.
+ * Los shelters no se destruyen al perder toda su resistencia.
+ * La implementación del tiempo de regeneración del shelter está bien, pero no es necesario evaluarla cada cuadro. Además, nunca para, y
+ en el caso de lograr res = maxRes, siempre haría esa asignación.
+
+Bonificación (0.0/0.5)
+ * No hubo propuesta para la bonificación
+
+Total: 1.5 / 5.0 
